@@ -1,0 +1,219 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top, #25204a 0%, #0b0b13 45%, #07070c 100%);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.game {
+    width: 90%;
+    max-width: 720px;
+    margin: auto;
+    padding: 35px 0 50px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 70px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: #8c7cff;
+}
+
+.streak {
+    background: #191824;
+    border: 1px solid #302b4b;
+    padding: 10px 16px;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.daily {
+    color: #8c7cff;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.hero h1 {
+    font-size: 58px;
+    letter-spacing: -2px;
+}
+
+.date {
+    color: #777789;
+    font-size: 12px;
+    margin-top: 8px;
+    letter-spacing: 2px;
+}
+
+.mystery-card {
+    background: rgba(23, 22, 35, 0.95);
+    border: 1px solid #302e42;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.4);
+}
+
+.difficulty {
+    display: inline-block;
+    background: #20202d;
+    color: #aaa9ba;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 28px;
+}
+
+.difficulty span {
+    color: #72d58c;
+}
+
+.mystery-card h2 {
+    text-align: center;
+    font-size: 27px;
+    line-height: 1.5;
+    font-weight: 600;
+    margin-bottom: 35px;
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    color: #aaa9ba;
+}
+
+.timer strong {
+    color: white;
+    font-size: 25px;
+    font-variant-numeric: tabular-nums;
+}
+
+input {
+    width: 100%;
+    padding: 17px;
+    background: #0d0d15;
+    border: 1px solid #39364d;
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 12px;
+}
+
+input:focus {
+    border-color: #8c7cff;
+    box-shadow: 0 0 0 3px rgba(140, 124, 255, 0.1);
+}
+
+button {
+    width: 100%;
+    padding: 17px;
+    border: none;
+    border-radius: 12px;
+    background: #8c7cff;
+    color: white;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.hint-button {
+    margin-top: 12px;
+    background: #20202d;
+    border: 1px solid #353348;
+    color: #b7b4c9;
+}
+
+#hintText {
+    text-align: center;
+    color: #aaa2ff;
+    margin-top: 18px;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+#result {
+    text-align: center;
+    margin-top: 20px;
+    min-height: 25px;
+    font-weight: bold;
+}
+
+.correct {
+    color: #6ee28b;
+}
+
+.wrong {
+    color: #ff6f7d;
+}
+
+.bottom-text {
+    text-align: center;
+    color: #555465;
+    font-size: 13px;
+    margin-top: 25px;
+}
+
+@media (max-width: 600px) {
+
+    .game {
+        padding-top: 20px;
+    }
+
+    .header {
+        margin-bottom: 45px;
+    }
+
+    .mystery-card {
+        padding: 25px 20px;
+    }
+
+    .mystery-card h2 {
+        font-size: 22px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+}
