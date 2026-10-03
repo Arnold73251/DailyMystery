@@ -3,7 +3,12 @@ import "./style.css";
 import { riddleSets } from "./questions.js";
 
 import { getPoints } from "./points.js";
-
+import {
+    getDailyQuestions,
+    isDailyCompleted,
+    markDailyCompleted,
+    getDailyScore
+} from "./daily.js";
 import {
     login,
     register
@@ -209,31 +214,9 @@ const loginButton =
    DAILY
 ========================================================= */
 
-const dailyCompleted =
-    localStorage.getItem(
-        "dailyMysteryCompleted"
-    ) === "true";
+const dailyCompleted = false;
 
-
-const savedScore =
-    Number(
-        localStorage.getItem(
-            "dailyMysteryScore"
-        )
-    ) || 0;
-
-
-let currentRiddle = 0;
-
-let mistakes = 0;
-
-let score = 0;
-
-let timeLeft = 30;
-
-let timerInterval = null;
-
-let selectedDifficulty = null;
+const savedScore = 0;
 
 
 /* =========================================================
@@ -273,7 +256,17 @@ const difficulties = {
     }
 
 };
+/* =========================================================
+   VARIABLES DU JEU
+========================================================= */
 
+let timerInterval = null;
+let timeLeft = 0;
+
+let selectedDifficulty = null;
+let currentRiddle = 0;
+let mistakes = 0;
+let score = 0;
 
 /* =========================================================
    OUTILS POUR LES RÉPONSES
@@ -919,17 +912,7 @@ function showDifficultySelection() {
     }
 
 
-    if (
-        localStorage.getItem(
-            "dailyMysteryCompleted"
-        ) === "true"
-    ) {
-
-        showEndScreen();
-
-        return;
-
-    }
+   
 
 
     app.innerHTML = `
@@ -1204,16 +1187,18 @@ function showDifficultySelection() {
 }
 
 
-/* =========================================================
-   DÉBUT DU JEU
-========================================================= */
-
 function startGame() {
 
+    if (!auth.currentUser) {
+        showLoginPage();
+        return;
+    }
+
+
     if (
-        localStorage.getItem(
-            "dailyMysteryCompleted"
-        ) === "true"
+        isDailyCompleted(
+            selectedDifficulty
+        )
     ) {
 
         showEndScreen();
@@ -1244,8 +1229,11 @@ function showRiddle() {
     clearInterval(timerInterval);
 
 
-    const riddles =
-        riddleSets[selectedDifficulty];
+   const riddles =
+    getDailyQuestions(
+        riddleSets,
+        selectedDifficulty
+    );
 
 
     const riddle =
@@ -1901,14 +1889,9 @@ function showRiddle() {
                 riddles.length
             ) {
 
-                localStorage.setItem(
-    "dailyMysteryScore",
+                markDailyCompleted(
+    selectedDifficulty,
     score
-);
-
-localStorage.setItem(
-    "dailyMysteryCompleted",
-    "true"
 );
 
 await saveDailyResult(
